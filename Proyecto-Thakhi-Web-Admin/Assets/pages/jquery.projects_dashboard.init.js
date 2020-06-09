@@ -45,7 +45,7 @@ var options = {
         }
       },
     },
-    colors: ['#4d79f6', '#4ac7ec', '#f3c74d'],
+    colors: ['#1a2035', '#4ac7ec', '#f3c74d'],
     stroke: {
       lineCap: 'round'
     },
@@ -98,7 +98,7 @@ var options = {
         xkey: 'y', 
         ykeys: [ 'a', 'b', 'c'], 
         labels: ['Total', 'Used', 'Target'], 
-        barColors: ['#4d79f6', '#9ab3fa', '#cad7fd'], 
+        barColors: ['#1a2035', '#9ab3fa', '#cad7fd'], 
         hideHover: 'auto',
         preUnits: "$", 
         gridLineColor: '#d2d6e6', 

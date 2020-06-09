@@ -29,7 +29,7 @@ $resultado = mysqli_query($conexion, $sql);
     <meta content="Mannatthemes" name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="../../Assets/images/favicon.ico">
+    <link rel="shortcut icon" href="../../Assets/images/favicon-thakhi.png">
 
     <!-- DataTables -->
     <link href="../../Assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />

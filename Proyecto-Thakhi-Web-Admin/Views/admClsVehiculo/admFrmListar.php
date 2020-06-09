@@ -17,7 +17,7 @@ conexion(); $sql="SELECT VEHid,VEHplaca,VEHmarca,VEHmodelo,VEHcolor,VEHanio_fabr
         <meta content="Mannatthemes" name="author" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="../../Assets/images/favicon.ico" />
+        <link rel="shortcut icon" href="../../Assets/images/favicon-thakhi.pngkhi.png" />
 
         <!-- DataTables -->
         <link href="../../Assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />

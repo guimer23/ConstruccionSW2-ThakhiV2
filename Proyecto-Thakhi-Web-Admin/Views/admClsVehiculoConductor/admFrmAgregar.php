@@ -22,7 +22,7 @@ require_once("../../Controllers/admClsConexion.php");
         <meta content="Mannatthemes" name="author" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="../../Assets/images/favicon.ico">
+        <link rel="shortcut icon" href="../../Assets/images/favicon-thakhi.png">
         <link href="../../Assets/plugins/dropify/css/dropify.min.css" rel="stylesheet">
         <!-- App css -->
         <link href="../../Assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

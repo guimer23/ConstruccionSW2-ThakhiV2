@@ -28,7 +28,7 @@ var ts2 = 1484418600000;
           autoSelected: 'zoom'
         }
       },
-      colors: ['#4d79f6'],
+      colors: ['#1a2035'],
       dataLabels: {
         enabled: false
       },

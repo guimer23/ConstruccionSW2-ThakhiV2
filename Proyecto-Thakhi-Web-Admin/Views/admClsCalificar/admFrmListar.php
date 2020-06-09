@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="../../Assets/starability/starability-minified/starability-all.min.css"/>
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="../../Assets/images/favicon.ico">
+        <link rel="shortcut icon" href="../../Assets/images/favicon-thakhi.png">
 
         <!-- DataTables -->
         <link href="../../Assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />

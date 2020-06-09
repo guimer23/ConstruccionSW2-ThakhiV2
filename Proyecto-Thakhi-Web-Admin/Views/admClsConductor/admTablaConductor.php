@@ -17,7 +17,7 @@ $resultado=mysqli_query($conexion,$sql);
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="shortcut icon" href="../../Assets/images/favicon.ico">
+    <link rel="shortcut icon" href="../../Assets/images/favicon-thakhi.png">
 
     <!-- DataTables -->
     <link href="../../Assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />

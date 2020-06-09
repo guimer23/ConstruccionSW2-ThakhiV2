@@ -16,7 +16,7 @@ if (isset($_SESSION['usu'])) {
         <meta content="Mannatthemes" name="author" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="Assets/images/favicon.ico">
+        <link rel="shortcut icon" href="Assets/images/favicon-thakhi.png">
 
         <!-- App css -->
         <link href="Assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

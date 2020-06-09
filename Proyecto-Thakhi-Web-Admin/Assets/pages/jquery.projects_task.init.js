@@ -21,7 +21,7 @@ var options = {
       endingShape: 'rounded'
     }
   },
-  colors: ['#4d79f6', '#4d79f6'],
+  colors: ['#1a2035', '#1a2035'],
   dataLabels: {
     enabled: false
   },
