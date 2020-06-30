@@ -24,6 +24,33 @@ class   Conductor{
         }
         return $result;
     }
+
+    public function obtener(int $id) : Conductor{
+        $result = new Conductor;
+
+        try {
+            $stm = $this->pdo->prepare('select * from admcontconductor where CONdni = ?');
+            $stm->execute([$id]);
+
+            $fetch = $stm->fetch();
+
+            $result->CONdni = $fetch->CONdni;
+            $result->CONnombre = $fetch->CONnombre;
+            $result->CONapellido = $fetch->CONapellido;
+            $result->CONlicencia = $fetch->CONlicencia;
+            $result->CONvigencialicencia = $fetch->CONvigencialicencia;
+            $result->CONcelular = $fetch->CONcelular;
+            $result->CONemail = $fetch->CONemail;
+            $result->CONdireccion = $fetch->CONdireccion;
+            $result->CONestado = $fetch->CONestado;   
+            
+           
+        } catch(Exception $e) {
+
+        }
+
+        return $result;
+    }
 }
 
 
