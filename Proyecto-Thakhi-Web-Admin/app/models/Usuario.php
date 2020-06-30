@@ -114,6 +114,42 @@ class   Usuario{
 
         return $result;
     }
-    
+
+    //Metodo Guardar2 Usuario
+    public function guardar2(Usuario $model) : bool{
+        $result = false;
+
+        try {
+
+            $sql = '
+            insert into admusutusuario(             
+                USUnombre,
+                USUapellidos,
+                USUemail,                 
+                USUusuario,
+                USUpassword,
+                USUestado,
+                ruta_foto
+            ) values (?,?, ?, ?, ?,?,?)';
+
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute([
+            $model->USUnombre,
+            $model->USUapellidos,
+            $model->USUemail,
+            $model->USUusuario,
+            $model->USUpassword,
+            $model->USUestado,
+            $model->ruta_foto
+        ]);        
+
+            $result = true;
+        } catch(Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+
+        return $result;
+    }
+
 }
 ?>
