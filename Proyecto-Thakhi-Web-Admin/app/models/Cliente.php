@@ -108,6 +108,36 @@ class   Cliente{
 
         return $result;
     }
+    //Modelo Guardar2 Cliente
+    public function guardar2(Cliente $model) : bool{
+        $result = false;
+
+        try {
+
+            $sql = '
+            insert into admclitcliente(
+                CLIdni,
+                CLInombre,
+                CLIapellido,
+                CLIcelular
+            ) values (?, ?, ?, ?)';
+
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute([
+            $model->CLIdni,
+            $model->CLInombre,
+            $model->CLIapellido,
+            $model->CLIcelular
+        ]);
+        
+
+            $result = true;
+        } catch(Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+
+        return $result;
+    }
 
 
 
