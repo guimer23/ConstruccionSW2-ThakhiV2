@@ -21,6 +21,20 @@ class   ConductorController{
         require_once _VIEW_PATH_ . 'footer.php';
     }
 
+    public function agregar() {
+        $estados = $this->estado->listar();
+  
+        if(!empty($_GET['id'])) {
+            $model = $this->conductor->obtener($_GET['id']);
+        }
+
+        $nuevo = empty($model->CONdni);
+
+       require_once _VIEW_PATH_ . 'header.php';
+        require_once _VIEW_PATH_ .'conductor/agregar.php';
+        require_once _VIEW_PATH_ . 'footer.php';
+    }
+
 }
 
 ?>
