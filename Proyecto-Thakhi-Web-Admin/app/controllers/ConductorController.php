@@ -35,6 +35,38 @@ class   ConductorController{
         require_once _VIEW_PATH_ . 'footer.php';
     }
 
+    public function guardar() {
+
+        $nombreImg=$_FILES['imagen']['name'];
+        $rutaAlmacenamiento=$_FILES['imagen']['tmp_name'];
+        $carpeta='public/images/';
+        $rutaFinal=$carpeta.$nombreImg;
+
+        move_uploaded_file($rutaAlmacenamiento, $rutaFinal);
+        
+        $model = new \App\Models\Conductor;
+        $model->VCONdni = $_POST['VCONdni'];
+        $model->CONdni = $_POST['CONdni'];
+        $model->CONnombre = $_POST['CONnombre'];
+        $model->CONapellido = $_POST['CONapellido'];
+        $model->CONlicencia = $_POST['CONlicencia'];
+        $model->CONvigencialicencia = $_POST['CONvigencialicencia'];
+        $model->CONcelular = $_POST['CONcelular'];
+        $model->CONemail = $_POST['CONemail'];
+        $model->CONclave = $_POST['CONclave'];
+        $model->CONdireccion = $_POST['CONdireccion'];
+        $model->CONestado = $_POST['CONestado'];//
+        $model->ruta_foto = $rutaFinal;   
+
+        $result = $this->conductor->guardar($model);
+
+        if(!$result) {
+            throw new Exception('No se pudo realizar la operación');
+        } else {
+            header('location: ?c=conductor');
+        }
+    }
+
 }
 
 ?>
