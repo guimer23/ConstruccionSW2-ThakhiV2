@@ -137,3 +137,201 @@
                 </div>
                 <!--end col-->
             </div>
+            <!-- end page title end breadcrumb -->
+
+            <!-- ========================================================================================== -->
+            <!-- INICIA SECCION CONTENIDO -->
+            <!-- ========================================================================================== -->
+
+            <?php if(isset($_GET['es'])) 
+                $txtdnic =strtoupper($_GET['es']);
+                         else $txtdnic=""; ?>
+
+
+     
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="?c=cliente&a=agregar" id="ir3"
+                                class="btn btn-primary px-4 float-right mt-0 mb-3"><i
+                                    class="mdi mdi-plus-circle-outline mr-2"></i>Agregar Nuevo Cliente</a>
+                            <h4 class="header-title mt-0">Detalles de Clientes</h4>
+
+
+                            <div class="table-responsive dash-social">
+                                <table id="TablaUsuario" class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Dni</th>
+                                            <th>Nombres</th>
+                                            <th>Celular</th>
+                                            <th>Correo</th>
+                                            <th>Editar</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php if(count($model) > 0): ?>
+                                        <?php foreach($model as $m): ?>
+
+                                        <tr>
+                                            <td>
+                                                <?php echo $m->CLIdni; ?>
+
+                                            </td>
+                                            <td>
+                                                <?php echo $m->CLInombre." "; ?><?php echo $m->CLIapellido; ?>
+                                            </td>                                           
+                                            <td hidden>
+                                                <?php echo $m->CLInombre; ?>
+                                            </td>
+                                            <td hidden>
+                                                <?php echo $m->CLIapellido; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->CLIcelular; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->CLIemail; ?>
+                                            </td>
+
+                                            <td>
+                                                <a href="?c=cliente&a=agregar&id=<?php echo $m->CLIdni; ?>">
+                                                    <i class="fas fa-edit text-info font-16"></i>
+                                                </a>
+                                                <a href="#" onclick="addRowHandlers(<?php  echo $m->CLIfoto ?>)"> <i
+                                                        class="fas fa-eye text-dark font-16" data-toggle="modal"
+                                                        data-animation="bounce" data-target=".bs-example-modal-lg"></i>
+                                                    
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--end card-body-->
+                    </div>
+                    <!--end card-->
+
+                </div>
+                <!--end col-->
+
+
+            </div>
+            <!--end row-->
+
+            <!-- modal -->
+
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mt-0" id="myLargeModalLabel">Detalle de Cliente</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img alt="" id="idfotosv2" class="img-fluid">
+                                </div>
+                                <div class="col-lg-9 align-self-center">
+                                    <div class="single-pro-detail">
+                                        <p class="mb-1">Cliente</p>
+                                        <div class="custom-border mb-3"></div>
+                                        <table class="table">
+                                            <thead class="thead-light">
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th width=30%>DNI</th>
+                                                    <td width=70% id="dnicv"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>NOMBRE</th>
+
+                                                    <td id="nombrecv"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>APELLIDOS</th>
+                                                    <td id="apellidocv"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>CELULAR</th>
+                                                    <td id="celularcv"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>CORREO</th>
+                                                    <td id="correocv"> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+            <!-- ========================================================================================== -->
+            <!-- TERMINA SECCION CONTENIDO -->
+            <!-- ========================================================================================== -->
+
+        </div><!-- container -->
+        <footer class="footer text-center text-sm-left">
+            &copy; 2020 Thakhi Delivery <span class="text-muted d-none d-sm-inline-block float-right">Construcción de
+                Softwre II</span>
+        </footer>
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+
+<script>
+function addRowHandlers(rutaFoto) {
+    var table = document.getElementById("TablaUsuario");
+    var rows = table.getElementsByTagName("tr");
+    for (i = 0; i < rows.length; i++) {
+        var currentRow = table.rows[i];
+        var createClickHandler =
+            function(row) {
+                return function() {
+                    var cel1 = row.getElementsByTagName("td")[0];
+                    var cel2 = row.getElementsByTagName("td")[2];
+                    var cel3 = row.getElementsByTagName("td")[3];
+                    var cel4 = row.getElementsByTagName("td")[4];
+                    var cel5 = row.getElementsByTagName("td")[5];
+
+                    var dni = cel1.innerHTML;
+                    var nombres = cel2.innerHTML;
+                    var apellidos = cel3.innerHTML;
+                    var celular = cel4.innerHTML;
+                    var correo = cel5.innerHTML;
+                    $('#dnicv').text(dni);
+                    $('#nombrecv').text(nombres);
+                    $('#apellidocv').text(apellidos);
+                    $('#celularcv').text(celular);
+                    $('#correocv').text(correo);
+
+                    if (rutaFoto == null) {
+                        $('#idfotosv2').attr("src", "public/images/user.png");
+                    } else {
+                        $('#idfotosv2').attr("src", drutaFoto);
+                    }
+
+                };
+            };
+
+        currentRow.onclick = createClickHandler(currentRow);
+    }
+}
+</script>
