@@ -151,5 +151,23 @@ class   Usuario{
         return $result;
     }
 
+    //Metodo Logear Usuario
+    public function logear(string $correo) : Usuario{
+        $result = new Usuario;
+
+        try {
+            $stm = $this->pdo->prepare('select * from admusutusuario where USUemail = ?');
+            $stm->execute([$correo]);
+
+            $fetch = $stm->fetch();
+            $result->USUnombre = $fetch->USUnombre;
+       
+        } catch(Exception $e) {
+
+        }
+
+        return $result;
+    }
+
 }
 ?>
