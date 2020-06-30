@@ -50,6 +50,65 @@ class   Cliente{
 
         return $result;
     }
+    //Modelo Guardar Cliente
+    public function guardar(Cliente $model) : bool{
+        $result = false;
+
+        try {
+
+            if(empty($model->VCLIdni)){
+                        $sql = '
+                        insert into admclitcliente(
+                            CLIdni,
+                            CLInombre,
+                            CLIapellido,
+                            CLIcelular,
+                            CLIemail,
+                            CLIclave
+                        ) values (?, ?, ?, ?,?,?)';
+            
+                    $stm = $this->pdo->prepare($sql);
+                    $stm->execute([
+                        $model->CLIdni,
+                        $model->CLInombre,
+                        $model->CLIapellido,
+                        $model->CLIcelular,
+                        $model->CLIemail,
+                        $model->CLIclave
+                    ]);
+        
+            } else {
+                $sql = '
+                    update admclitcliente
+                    set 
+                    CLInombre = ?,
+                    CLIapellido = ?,
+                    CLIcelular = ?,
+                    CLIemail = ?,
+                    CLIclave=?
+                    where CLIdni = ?
+                ';
+
+                $stm = $this->pdo->prepare($sql);
+                $stm->execute([
+                    $model->CLInombre,
+                    $model->CLIapellido,
+                    $model->CLIcelular,
+                    $model->CLIemail,
+                    $model->CLIclave,
+                    $model->VCLIdni
+                    
+                ]);
+            }
+
+            $result = true;
+        } catch(Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+
+        return $result;
+    }
+
 
 
 
