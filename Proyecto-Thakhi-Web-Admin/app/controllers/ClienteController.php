@@ -44,6 +44,32 @@ class   ClienteController{
         //require_once _VIEW_PATH_ . 'footer.php';
 
     }
+    //Controlador Guardar Cliente
+    public function guardar() {
+        
+        $model = new \App\Models\Cliente;
+        $model->VCLIdni=$_POST['VCLIdni'];
+        $model->CLIdni = $_POST['CLIdni'];
+        $model->CLInombre = $_POST['CLInombre'];
+        $model->CLIapellido = $_POST['CLIapellido'];
+        $model->CLIcelular = $_POST['CLIcelular'];
+        $model->CLIemail = $_POST['CLIemail'];
+        $model->CLIclave = $_POST['CLIclave'];           
+
+        $result = $this->cliente->guardar($model);
+
+        if(!$result) {
+            throw new Exception('No se pudo realizar la operación');
+        } else {
+         //   header('location: ?c=cliente');
+            header('location: ?c=cliente&es=yes');
+           
+          //  echo "<script> alert('gregadowe') </script>";
+
+
+
+        }
+    }
 
 }
 
