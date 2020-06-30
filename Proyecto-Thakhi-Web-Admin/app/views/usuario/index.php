@@ -145,8 +145,139 @@
             <!-- INICIA SECCION CONTENIDO -->
             <!-- ========================================================================================== -->
 
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="?c=usuario&a=agregar" class="btn btn-primary px-4 float-right mt-0 mb-3"><i
+                                    class="mdi mdi-plus-circle-outline mr-2"></i>Agregar Nuevo Usuario</a>
+                            <h4 class="header-title mt-0">Detalles de Usuario</h4>
+                            <div class="table-responsive dash-social">
+                                <table id="TablaUsuario" class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Email</th>
+                                            <th>Usuario</th>
+                                            <th>Estado</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                        <!--end tr-->
+                                    </thead>
+                                    <tbody>
+                                        <?php $i=1; ?>
+                                        <?php if(count($model) > 0): ?>
+                                        <?php foreach($model as $m): ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $i; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->USUnombre; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->USUapellidos; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->USUemail; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->USUusuario; ?>
+                                            </td>
+                                            <td>
+                                                <?php  
+                                        if($m->USUestado=="A"){
+                                            echo "<span class='badge badge-success'>Activo</span>";
 
+                                        }  else{
+                                            echo "<span class='badge badge-danger'>Inactivo</span>";
+                                        }
+                                            ?>
+                                            </td>
+                                            <td>
+                                                <a href="?c=usuario&a=agregar&id=<?php echo $m->USUid; ?>">
+                                                    <i class="fas fa-edit text-info font-16"></i>
+                                                </a>
+                                                <a href="#" onclick="addRowHandlers('<?php  echo $m->ruta_foto ?>')"> <i
+                                                        class="fas fa-eye text-dark font-16" data-toggle="modal"
+                                                        data-animation="bounce" data-target=".bs-example-modal-lg"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                        <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--end card-body-->
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
 
+            <!-- modal -->
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mt-0" id="myLargeModalLabel">Detalle de Cliente</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img alt="" id="idfotosv2" class="img-fluid">
+                                </div>
+                                <div class="col-lg-9 align-self-center">
+                                    <div class="single-pro-detail">
+                                        <p class="mb-1">Cliente</p>
+                                        <div class="custom-border mb-3"></div>
+                                        <table class="table">
+                                            <thead class="thead-light">
+                                            </thead>
+                                            <tbody>
+
+                                                <tr>
+                                                    <th>NOMBRE</th>
+
+                                                    <td id="nombrecv"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>APELLIDOS</th>
+                                                    <td id="apellidocv"> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>CORREO</th>
+                                                    <td id="correov"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>USUARIO</th>
+                                                    <td id="usuariov"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>ESTADO</th>
+                                                    <td> <span id="estadov" class='badge badge-danger'>Inactivo</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
 
 
             <!-- ========================================================================================== -->
