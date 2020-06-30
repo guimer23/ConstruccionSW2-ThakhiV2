@@ -25,5 +25,31 @@ class   Usuario{
 
         return $result;
     }
+
+    //Metodo Obtener Usuario
+    public function obtener(int $id) : Usuario{
+        $result = new Usuario;
+
+        try {
+            $stm = $this->pdo->prepare('select * from admusutusuario where USUid = ?');
+            $stm->execute([$id]);
+
+            $fetch = $stm->fetch();
+
+            $result->USUid = $fetch->USUid;
+            $result->USUnombre = $fetch->USUnombre;
+            $result->USUapellidos = $fetch->USUapellidos;
+            $result->USUemail = $fetch->USUemail;            
+            $result->USUusuario = $fetch->USUusuario;
+            $result->USUpassword = $fetch->USUpassword;
+            $result->USUestado = $fetch->USUestado;
+            $result->ruta_foto = $fetch->ruta_foto;
+           
+        } catch(Exception $e) {
+
+        }
+
+        return $result;
+    }
 }
 ?>
