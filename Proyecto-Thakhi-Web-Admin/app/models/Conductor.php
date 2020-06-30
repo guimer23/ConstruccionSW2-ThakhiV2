@@ -51,6 +51,79 @@ class   Conductor{
 
         return $result;
     }
+
+    public function guardar(Conductor $model) : bool{
+        $result = false;
+
+        try {
+
+            if(empty($model->VCONdni)){
+                $sql = '
+                insert into admcontconductor(
+                    CONdni,
+                    CONnombre,
+                    CONapellido,
+                    CONlicencia,
+                    CONvigencialicencia,
+                    CONcelular,
+                    CONemail,
+                    CONclave,
+                    CONdireccion,
+                    CONestado,
+                    ruta_foto
+                ) values (?, ?, ?, ?,?,?,?,?,?,?,?)';
+    
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute([
+                $model->CONdni,
+                $model->CONnombre,
+                $model->CONapellido,
+                $model->CONlicencia,
+                $model->CONvigencialicencia,
+                $model->CONcelular,
+                $model->CONemail,
+                $model->CONclave,
+                $model->CONdireccion,             
+                $model->CONestado,
+                $model->ruta_foto   
+            ]); 
+
+            } else {
+                $sql = '
+                    update admcontconductor
+                    set 
+                    CONnombre = ?,
+                    CONapellido = ?,
+                    CONlicencia = ?,
+                    CONvigencialicencia = ?,
+                    CONcelular = ?,
+                    CONemail = ?,
+                    CONdireccion = ?,
+                    CONestado = ?
+                    where CONdni = ?
+                ';
+
+                $stm = $this->pdo->prepare($sql);
+                $stm->execute([
+                    $model->CONnombre,
+                    $model->CONapellido,
+                    $model->CONlicencia,
+                    $model->CONvigencialicencia,
+                    $model->CONcelular,
+                    $model->CONemail,
+                    $model->CONdireccion,
+                    $model->CONestado,
+                    $model->VCONdni
+                ]);
+            }
+
+            $result = true;
+        } catch(Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+
+        return $result;
+    }
 }
 
 
