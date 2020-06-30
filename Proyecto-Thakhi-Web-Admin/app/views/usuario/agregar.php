@@ -145,18 +145,142 @@
             <!-- INICIA SECCION CONTENIDO -->
             <!-- ========================================================================================== -->
 
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="card">
+                        <form method="post" action="?c=usuario&a=guardar" enctype="multipart/form-data"
+                            id="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-9">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 header-title">Datos del Usuarios</h4>
+                                        <div class="row clearfix">
+                                            <div class="col-md-4">
 
-            <!-- ========================================================================================== -->
-            <!-- TERMINA SECCION CONTENIDO -->
-            <!-- ========================================================================================== -->
+                                                <div class="form-group">
+                                                    <label>Nombres </label>
+                                                    <input type="text" id="USUid" name="USUid" class="form-control"
+                                                        hidden="" value="<?php echo $nuevo ? '' : $model->USUid; ?>" />
+                                                    <input type="text" id="USUnombre" name="USUnombre"
+                                                        value="<?php echo $nuevo ? '' : $model->USUnombre; ?>"
+                                                        class="form-control" onkeypress="return soloLetras(event)"
+                                                        onpaste="return false" onpaste="return false;"
+                                                        onDrop="return false;" autocomplete=off required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label>Apellidos</label>
+                                                    <input type="text" id="USUapellidos" name="USUapellidos" required
+                                                        value="<?php echo $nuevo ? '' : $model->USUapellidos; ?>"
+                                                        class="form-control" onkeypress="return soloLetras(event)"
+                                                        onpaste="return false" autocomplete=off>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label>Email <span class="text-danger"></span></label>
+                                                    <input type="email" id="USUemail" name="USUemail"
+                                                        value="<?php echo $nuevo ? '' : $model->USUemail; ?>"
+                                                        class="form-control" onpaste="return false;"
+                                                        onDrop="return false;" autocomplete=off required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Nombre Usuario <span class="text-danger"></span></label>
+                                                    <input type="text" id="USUusuario" name="USUusuario"
+                                                        value="<?php echo $nuevo ? '' : $model->USUusuario; ?>"
+                                                        class="form-control" required
+                                                        pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{3,250}" onpaste="return false;"
+                                                        onDrop="return false;" autocomplete=off required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <input type="password" id="USUpassword" name="USUpassword"
+                                                        value="<?php echo $nuevo ? '' : $model->USUpassword; ?>"
+                                                        class="form-control" onpaste="return false;"
+                                                        onDrop="return false;" autocomplete=off required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Estado</label>
+                                                <div class="form-group">
+                                                    <select id="USUestado" name="USUestado" class="form-control"
+                                                        Required>
+                                                        <?php foreach($estados as $e): ?>
+                                                        <?php  $Estado=null;
+                                                                if(!$nuevo){
+                                                                    $Estado=$model->USUestado;
+                                                                    }  
+                                                                    ?>
+                                                        <option
+                                                            <?php echo $Estado == $e->id_estado ? 'selected' : ''; ?>
+                                                            value="<?php echo $e->id_estado; ?> ">
+                                                            <?php echo $e->nombre_estado; ?></option>
 
-        </div><!-- container -->
-        <footer class="footer text-center text-sm-left">
-            &copy; 2020 Thakhi Delivery <span class="text-muted d-none d-sm-inline-block float-right">Construcción
-                de
-                Softwre II</span>
-        </footer>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <!--end col-->
+                                <div class="col-md-12 col-lg-3">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 header-title">Subir Foto</h4>
+                                        <p class="text-muted mb-3">Arrastra una imagen</p>
+                                        <input type="file" id="imagen" name="imagen" class="dropify" />
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <!--end col-->
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="card-body">
+                                        <div class="row clearfix text-right  ">
+                                            <div class="form-group mb-0">
+                                                <button type="submit" id="btn-submit"
+                                                    class="btn btn-primary waves-effect waves-light">
+                                                    Guardar
+                                                </button>
+                                                <a href="?c=usuario"
+                                                    class="btn btn-danger waves-effect m-l-5">Cancelar</a>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <!--end col-->
+                            </div>
+                            <!--end row-->
+                        </form>
+                        <!--end form-->
+                    </div>
+                    <!--end row-->
+                </div><!-- container -->
+
+                <!-- ========================================================================================== -->
+                <!-- TERMINA SECCION CONTENIDO -->
+                <!-- ========================================================================================== -->
+
+            </div><!-- container -->
+            <footer class="footer text-center text-sm-left">
+                &copy; 2020 Thakhi Delivery <span class="text-muted d-none d-sm-inline-block float-right">Construcción
+                    de
+                    Softwre II</span>
+            </footer>
+        </div>
+        <!-- end page content -->
     </div>
-    <!-- end page content -->
-</div>
-<!-- end page-wrapper -->
+    <!-- end page-wrapper -->
