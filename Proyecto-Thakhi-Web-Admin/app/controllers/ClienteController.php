@@ -16,7 +16,20 @@ class   ClienteController{
         require_once _VIEW_PATH_ .'cliente/index.php';
         require_once _VIEW_PATH_ . 'footer.php';
     }
+    //Controlador Agreagr cliente
+    public function agregar() {
+  
+  
+        if(!empty($_GET['id'])) {
+            $model = $this->cliente->obtener($_GET['id']);
+        }
 
+        $nuevo = empty($model->CLIdni);
+
+       require_once _VIEW_PATH_ . 'header.php';
+        require_once _VIEW_PATH_ .'cliente/agregar.php';
+        require_once _VIEW_PATH_ . 'footer.php';
+    }
 
 }
 
