@@ -137,3 +137,135 @@
                 </div>
                 <!--end col-->
             </div>
+                  <!-- end page title end breadcrumb -->
+
+            <!-- ========================================================================================== -->
+            <!-- INICIA SECCION CONTENIDO -->
+            <!-- ========================================================================================== -->
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="card">
+                        <form method="post" action="?c=cliente&a=guardar" id="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-9">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 header-title">Datos del Cliente</h4>
+                                        <div class="row clearfix">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>DNI </label>
+                                                    <input type="text" name="VCLIdni" id="VCLIdni" hidden=""
+                                                        value="<?php echo $nuevo ? '' : $model->CLIdni; ?>">
+                                                    <input type="text" name="CLIdni"
+                                                        value="<?php echo $nuevo ? '' : $model->CLIdni; ?>"
+                                                        class="form-control" maxlength="8"
+                                                        oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                        min="1" pattern="^[0-9]+" onpaste="return false;"
+                                                        onDrop="return false;" autocomplete=off required /><i>(Máximo 8
+                                                        dígitos)</i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label>Nombres</label>
+                                                    <input type="text" name="CLInombre" class="form-control"
+                                                        value="<?php echo $nuevo ? '' : $model->CLInombre; ?>" required
+                                                        onkeypress="return soloLetras(event)" onpaste="return false">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label>Apellidos <span class="text-danger"></span></label>
+                                                    <input type="text" name="CLIapellido"
+                                                        value="<?php echo $nuevo ? '' : $model->CLIcelular; ?>"
+                                                        class="form-control" onkeypress="return soloLetras(event)"
+                                                        onpaste="return false" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Celular <span class="text-danger"></span></label>
+                                                    <input type="text" name="CLIcelular"
+                                                        value="<?php echo $nuevo ? '' : $model->CLIcelular; ?>"
+                                                        class="form-control" maxlength="9"
+                                                        oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                        min="1" pattern="^[0-9]+" onpaste="return false;"
+                                                        onDrop="return false;" autocomplete=off required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label>Correo electrónico</label>
+                                                    <input type="email" name="CLIemail" class="form-control"
+                                                        value="<?php echo $nuevo ? '' : $model->CLIemail; ?>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Clave </label>
+                                                    <input type="password" name="CLIclave" class="form-control"
+                                                        value="<?php echo $nuevo ? '' : $model->CLIclave; ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <!--end col-->
+                                <div class="col-md-12 col-lg-3">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 header-title">Subir Foto</h4>
+                                        <p class="text-muted mb-3">Arrastra una imagen</p>
+                                        <input type="file" id="imagen" name="imagen" class="dropify" />
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <!--end col-->
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="card-body">
+                                        <div class="row clearfix text-right  ">
+                                            <div class="form-group mb-0">
+                                                <td class="border-0">
+                                                    <button type="submit" id="btn-submit"
+                                                        class="btn btn-primary waves-effect waves-light">
+                                                        Guardar
+                                                    </button>
+                                                </td>
+
+                                                <a href="?c=cliente"
+                                                    class="btn btn-danger waves-effect m-l-5">Cancelar</a>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <!--end col-->
+                            </div>
+                            <!--end row-->
+                        </form>
+                        <!--end form-->
+                    </div>
+                    <!--end row-->
+                </div><!-- container -->
+            </div><!-- container -->
+
+
+
+            <!-- ========================================================================================== -->
+            <!-- TERMINA SECCION CONTENIDO -->
+            <!-- ========================================================================================== -->
+
+        </div><!-- container -->
+        <footer class="footer text-center text-sm-left">
+            &copy; 2020 Thakhi Delivery <span class="text-muted d-none d-sm-inline-block float-right">Construcción de
+                Softwre II</span>
+        </footer>
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
