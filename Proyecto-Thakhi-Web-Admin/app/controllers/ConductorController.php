@@ -22,7 +22,7 @@ class   ConductorController{
     }
 
     public function agregar() {
-        $estados = $this->estad->listar();
+        $estados = $this->estado->listar();
   
         if(!empty($_GET['id'])) {
             $model = $this->conductor->obtener($_GET['id']);
