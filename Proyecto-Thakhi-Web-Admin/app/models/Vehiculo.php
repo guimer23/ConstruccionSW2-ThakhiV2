@@ -112,6 +112,41 @@ class   Vehiculo{
         return $result;
     }
 
+    public function guardar0(Vehiculo $model) : bool{
+        $result = false;
+        try {
+
+            $sql = '
+            insert into admvehtvehiculo(
+                VEHplaca,
+                VEHmarca,
+                VEHmodelo,
+                VEHcolor,
+                VEHanio_fabricacion,
+                VEHestado,
+                ruta_foto
+
+            ) values (?, ?, ?, ?,?,?,?)';
+
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute([
+            $model->VEHplaca,
+            $model->VEHmarca,
+            $model->VEHmodelo,
+            $model->VEHcolor,
+            $model->VEHanio_fabricacion,
+            $model->VEHestado,
+            $model->ruta_foto
+        ]);        
+
+            $result = true;
+        } catch(Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+
+        return $result;
+    }
+
 }
 
 
