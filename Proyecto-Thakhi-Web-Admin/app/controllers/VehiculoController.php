@@ -33,6 +33,38 @@ class   VehiculoController{
         require_once _VIEW_PATH_ .'vehiculo/agregar.php';
         require_once _VIEW_PATH_ . 'footer.php';
     }
+
+    public function guardar() {
+
+        $nombreImg=$_FILES['imagen']['name'];
+        $rutaAlmacenamiento=$_FILES['imagen']['tmp_name'];
+        $carpeta='public/images/';
+        $rutaFinal=$carpeta.$nombreImg;
+
+        move_uploaded_file($rutaAlmacenamiento, $rutaFinal);
+        $model = new \App\Models\Vehiculo;
+
+      
+        $model->VEHid = $_POST['VEHid'];
+        $model->VEHplaca = $_POST['VEHplaca'];
+        $model->VEHmarca = $_POST['VEHmarca'];
+        $model->VEHmodelo = $_POST['VEHmodelo'];
+        $model->VEHcolor = $_POST['VEHcolor'];
+        $model->VEHanio_fabricacion = $_POST['VEHanio_fabricacion'];       
+        $model->VEHsoat = $_POST['VEHsoat'];
+        $model->VEHestado = $_POST['VEHestado']; 
+
+        $model->ruta_foto = $rutaFinal;          
+
+        $result = $this->vehiculo->guardar($model);
+
+        if(!$result) {
+            throw new Exception('No se pudo realizar la operación');
+        } else {
+            header('location: ?c=vehiculo');
+        }
+    }
+
 }
 
 ?>
