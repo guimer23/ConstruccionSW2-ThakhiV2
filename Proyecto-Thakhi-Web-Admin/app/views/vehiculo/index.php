@@ -143,3 +143,56 @@
 </div>
 <!-- end page-wrapper -->
 
+<script>
+function addRowHandlers(rutaFoto) {
+    var table = document.getElementById("TablaUsuario");
+    var rows = table.getElementsByTagName("tr");
+    for (i = 0; i < rows.length; i++) {
+        var currentRow = table.rows[i];
+        var createClickHandler =
+            function(row) {
+                return function() {
+                    var cel1 = row.getElementsByTagName("td")[1];
+                    var cel2 = row.getElementsByTagName("td")[2];
+                    var cel3 = row.getElementsByTagName("td")[3];
+                    var cel4 = row.getElementsByTagName("td")[4];
+                    var cel5 = row.getElementsByTagName("td")[5];
+                    var cel6 = row.getElementsByTagName("td")[6];
+
+                    var placa = cel1.innerHTML;
+                    var marca = cel2.innerHTML;
+                    var modelo = cel3.innerHTML;
+                    var color = cel4.innerHTML;
+                    var anio = cel5.innerHTML;
+                    var estadoval = cel6.innerHTML.trim();
+                    //console.log(estado1);
+                    var estado;
+                    if (estadoval == '<span class="badge badge-success">Activo</span>') {
+                        estado = "Activo";
+                        document.getElementById("estadov").className = "badge badge-success";
+                    } else {
+                        estado = "Inactivo";
+                        document.getElementById("estadov").className = "badge badge-danger";
+                    }
+                    $('#placav').text(placa);
+                    $('#marcav').text(marca);
+                    $('#modelov').text(modelo);
+                    $('#colorv').text(color);
+                    $('#aniov').text(anio);
+                    $('#estadov').text(estado);
+                    if (rutaFoto == null) {
+                        $('#idfotosv2').attr("src", "public/images/user.png");
+                    } else if (rutaFoto == "") {
+                        $('#idfotosv2').attr("src", "public/images/user.png");
+                    } else {
+                        $('#idfotosv2').attr("src", rutaFoto);
+                    }
+
+                };
+            };
+
+        currentRow.onclick = createClickHandler(currentRow);
+    }
+}
+window.onload = addRowHandlers();
+</script>
