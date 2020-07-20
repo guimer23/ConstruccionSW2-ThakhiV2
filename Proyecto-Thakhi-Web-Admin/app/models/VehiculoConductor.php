@@ -28,4 +28,47 @@ class VehiculoConductor {
 
         return $result;
     }
+    //        $model->VECid=$_POST['VECid'];
+public function guardar(VehiculoConductor $model) : bool{
+    $result = false;
+
+    try {
+
+        if(empty($model->VECid)){
+            $sql = '
+            INSERT INTO admvectvehiculo_conductor (condni,VEHid,VECestado) values (?, ?, ?)';
+
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute([
+                $model->CONdni,
+                $model->VEHid ,
+                $model->VECestado  ]);   
+//VEHsoat
+        } else {
+            $sql = '
+                update admvectvehiculo_conductor
+                set 
+                condni = ?,
+                VEHid = ?,
+                VECestado = ?
+                where VECid = ?
+            ';
+
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute([
+                $model->CONdni,
+                $model->VEHid,
+                $model->VECestado,
+                $model->VECid
+            ]);
+        }
+
+        $result = true;
+    } catch(Exception $e) {
+        throw new Exception($e->getMessage());
+    }
+
+    return $result;
+}
+  
 }
