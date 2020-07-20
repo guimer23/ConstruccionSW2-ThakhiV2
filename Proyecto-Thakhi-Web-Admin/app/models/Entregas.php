@@ -34,6 +34,42 @@ class   Entregas{
         return $result;
     }
 
+    public function guardar(Entregas $model) : bool{
+        $result = false;
+
+        try {
+
+            $sql = '
+            insert into admenttentrega(
+                ENTdescripcion,
+                ENTtipo,
+                VECid,
+                ENTfechahora,
+                CLIdni,
+                ENTprecio,
+                ENTestado
+            ) values (?, ?, ?, ?,?,?,?)';
+
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute([
+            $model->ENTdescripcion,
+            $model->ENTtipo,
+            $model->VECid,
+            $model->ENTfechahora,
+            $model->CLIdni,
+            $model->ENTprecio,
+            $model->ENTestado
+        ]);        
+
+            $result = true;
+        } catch(Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+
+        return $result;
+    }
+
+
 }
 
 
