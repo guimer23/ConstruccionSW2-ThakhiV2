@@ -14,7 +14,13 @@ class   EntregasController{
         $this->cliente=new \App\Models\Cliente;
         $this->vehiculo_conductor=new \App\Models\VehiculoConductor;
     }
-
+    public function index() {
+        $model = $this->entregas->listar();
+      
+        require_once _VIEW_PATH_ . 'header.php';
+        require_once _VIEW_PATH_ .'entregas/index.php';
+        require_once _VIEW_PATH_ . 'footer.php';
+    }
 
 }
 
