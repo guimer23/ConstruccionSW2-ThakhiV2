@@ -70,5 +70,26 @@ public function guardar(VehiculoConductor $model) : bool{
 
     return $result;
 }
-  
+   public function guardar2(VehiculoConductor $model) : bool{
+        $result = false;
+
+        try {            
+                $sql = '
+                INSERT INTO admvectvehiculo_conductor (condni,VEHid,VECestado) values (?, ?, ?)';
+
+                $stm = $this->pdo->prepare($sql);
+                $stm->execute([
+                    $model->CONdni,
+                    $model->VEHid ,
+                    $model->VECestado  ]); 
+                    
+                
+
+            $result = true;
+        } catch(Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+
+        return $result;
+    }
 }
