@@ -77,6 +77,44 @@ class Monitorear{
 
         return $result;
     }
+        public function guardar(Conductor $model) : bool{
+        $result = false;
+        try {
+            $sql = '
+            insert into admcontconductor(
+                CONdni,
+                CONnombre,
+                CONapellido,
+                CONlicencia,
+                CONvigencialicencia,
+                CONcelular,
+                CONemail,
+                CONclave,
+                CONdireccion,
+                ruta_foto
+            ) values (?, ?, ?, ?,?,?,?,?,?,?)';
+
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute([
+            $model->CONdni,
+            $model->CONnombre,
+            $model->CONapellido,
+            $model->CONlicencia,
+            $model->CONvigencialicencia,
+            $model->CONcelular,
+            $model->CONemail,
+            $model->CONclave,
+            $model->CONdireccion,
+            $model->ruta_foto
+        ]);       
+
+            $result = true;
+        } catch(Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+
+        return $result;
+    }
 }
 
 
