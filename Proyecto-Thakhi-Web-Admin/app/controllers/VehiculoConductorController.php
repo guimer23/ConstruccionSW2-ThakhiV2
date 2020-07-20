@@ -11,5 +11,14 @@ class   VehiculoConductorController{
         $this->conductor=new \App\Models\Conductor;
         $this->vehiculo=new \App\Models\Vehiculo;
     }
+       public function index() {
+        $model = $this->vehiculo_conductor->listar();
+        //  $model = $this->empleado->listar();
+        require_once _VIEW_PATH_ . 'header.php';
+        require_once _VIEW_PATH_ .'vehiculo_conductor/index.php';
+        require_once _VIEW_PATH_ . 'footer.php';
+    }
     
+}
+
 ?>
