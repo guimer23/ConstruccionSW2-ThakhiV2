@@ -312,3 +312,56 @@
 <!-- end page-wrapper -->
 
 
+<script>
+function addRowHandlers(rutaFoto) {
+    var table = document.getElementById("TablaUsuario");
+    var rows = table.getElementsByTagName("tr");
+    for (i = 0; i < rows.length; i++) {
+        var currentRow = table.rows[i];
+        var createClickHandler =
+            function(row) {
+                return function() {
+                    var cel1 = row.getElementsByTagName("td")[1];
+                    var cel2 = row.getElementsByTagName("td")[2];
+                    var cel3 = row.getElementsByTagName("td")[3];
+                    var cel4 = row.getElementsByTagName("td")[5];
+                    var cel5 = row.getElementsByTagName("td")[7];
+                    var descripcion = cel1.innerHTML;
+                    var tipo = cel2.innerHTML;
+                    var conductor = cel3.innerHTML;
+                    var cliente = cel4.innerHTML;
+                    var estadoval = cel5.innerHTML.trim();
+                    console.log(estadoval);
+                    var estado;
+                    if (estadoval == '<span class="badge badge-primary">Pendiente</span>') {
+                        estado = "Pendiente";
+                        document.getElementById("estadov").className = "badge badge-primary";
+                    } else if (estadoval == '<span class="badge badge-success">Entregado</span>') {
+                        estado = "Entregado";
+                        document.getElementById("estadov").className = "badge badge-success";
+                    } else {
+                        estado = "No entregado";
+                        document.getElementById("estadov").className = "badge badge-danger";
+                    }
+
+                    $('#descripcionv').text(descripcion);
+                    $('#tipov').text(tipo);
+                    $('#conductorv').text(conductor);
+                    $('#clientev').text(cliente);
+                    $('#estadov').text(estado);
+                    if (rutaFoto == null) {
+                        $('#idfotosv2').attr("src", "public/images/paquete.jpg");
+                    } else if (rutaFoto == "") {
+                        $('#idfotosv2').attr("src", "public/images/paquete.jpg");
+                    } else {
+                        $('#idfotosv2').attr("src", rutaFoto);
+                    }
+
+                };
+            };
+
+        currentRow.onclick = createClickHandler(currentRow);
+    }
+}
+window.onload = addRowHandlers();
+</script>
