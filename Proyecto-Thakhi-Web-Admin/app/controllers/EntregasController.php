@@ -1,72 +1,67 @@
-<?php   
-namespace App\Models;
-use Exception;
+<?php
+namespace App\Controllers;
 
-class   Entregas{
+class   EntregasController{
 
-    private $pdo;
+    private $cliente;
+    private $conductor;
+    private $entregas;
+    private $vehiculo_conductor;
 
     public function __construct(){
-        $this->pdo=\Core\Database::getConnection();
-
+        $this->entregas = new \App\Models\Entregas;
+        $this->conductor=new \App\Models\Conductor;
+        $this->cliente=new \App\Models\Cliente;
+        $this->vehiculo_conductor=new \App\Models\VehiculoConductor;
     }
-    public function listar() : array{
-        $result = [];
-        try {
-            $sql = "SELECT a.ENTid,a.ENTdescripcion,a.ENTtipo,c.CONnombre ,a.ENTfechahora,cli.CLInombre,a.ENTprecio,a.ENTestado,a.ENTfoto from admenttentrega as a
-            inner join admclitcliente as cli
-            on a.CLIdni=cli.CLIdni
-            inner join admvectvehiculo_conductor as co
-            on a.VECid=co.VECid
-            inner join admcontconductor as c
-            on co.CONdni=c.CONdni
-            order by  a.ENTid desc
-            ";
+    public function index() {
+        $model = $this->entregas->listar();
+      
+        require_once _VIEW_PATH_ . 'header.php';
+        require_once _VIEW_PATH_ .'entregas/index.php';
+        require_once _VIEW_PATH_ . 'footer.php';
+    }
+    public function agregar() {       
+        //$conductores=$this->conductor->listar();
+          $clientes = $this->cliente->listar();  
+          $vehiculoconductor=$this->vehiculo_conductor->listar(); 
+  
+         require_once _VIEW_PATH_ . 'header.php';
+          require_once _VIEW_PATH_ .'entregas/agregar.php';
+          require_once _VIEW_PATH_ . 'footer.php';
+      }
+      public function guardar() {
 
-            $stm = $this->pdo->prepare($sql);
-            $stm->execute();
+        $estado=$_POST['estado'];
+        $var="";
+        if($estado=="Pendiente"){
+           // $datos[6]="A";
+           $var="P";
+        
+          }
+            else  {
+     
+          $var="I";
+        }  
+  
+        $model = new \App\Models\Entregas;
+        $model->ENTdescripcion  = $_POST['ENTdescripcion'];
+        $model->ENTtipo  = $_POST['ENTtipo'];
+        $model->VECid = $_POST['VECid'];    
+        $model->ENTfechahora  = $_POST['ENTfechahora'];
+        $model->CLIdni  = $_POST['CLIdni'];
+        $model->ENTprecio = $_POST['ENTprecio']; 
+        $model->ENTestado = $var; 
 
-            $result = $stm->fetchAll();
-        } catch(Exception $e) {
+        $result = $this->entregas->guardar($model);
 
+        if(!$result) {
+            throw new Exception('No se pudo realizar la operación');
+        } else {
+            header('location: ?c=entregas');
         }
-        return $result;
     }
 
-    public function guardar(Entregas $model) : bool{
-        $result = false;
-
-        try {
-
-            $sql = '
-            insert into admenttentrega(
-                ENTdescripcion,
-                ENTtipo,
-                VECid,
-                ENTfechahora,
-                CLIdni,
-                ENTprecio,
-                ENTestado
-            ) values (?, ?, ?, ?,?,?,?)';
-
-        $stm = $this->pdo->prepare($sql);
-        $stm->execute([
-            $model->ENTdescripcion,
-            $model->ENTtipo,
-            $model->VECid,
-            $model->ENTfechahora,
-            $model->CLIdni,
-            $model->ENTprecio,
-            $model->ENTestado
-        ]);        
-
-            $result = true;
-        } catch(Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-
-        return $result;
-    }
 }
 
 ?>
