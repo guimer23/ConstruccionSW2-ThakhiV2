@@ -33,6 +33,34 @@ class   VehiculoConductorController{
         require_once _VIEW_PATH_ .'vehiculo_conductor/agregar.php';
         require_once _VIEW_PATH_ . 'footer.php';
     }
+        public function guardar() {
+
+        $estado=$_POST['VECestado'];
+        $var="";
+        if($estado=="Activo"){
+           // $datos[6]="A";
+           $var="A";
+        
+          }
+            else {
+          // code...$datos[6]="A";
+          $var="I";
+        }  
+  
+        $model = new \App\Models\VehiculoConductor;
+        $model->VECid=$_POST['VECid'];
+        $model->CONdni  = $_POST['CONdni'];
+        $model->VEHid  = $_POST['VEHid'];
+        $model->VECestado = $var;      
+
+        $result = $this->vehiculo_conductor->guardar($model);
+
+        if(!$result) {
+            throw new Exception('No se pudo realizar la operación');
+        } else {
+            header('location: ?c=vehiculoconductor');
+        }
+    }
 
 }
 
