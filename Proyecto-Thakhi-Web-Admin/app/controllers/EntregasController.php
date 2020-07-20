@@ -30,6 +30,37 @@ class   EntregasController{
           require_once _VIEW_PATH_ .'entregas/agregar.php';
           require_once _VIEW_PATH_ . 'footer.php';
       }
+      public function guardar() {
+
+        $estado=$_POST['estado'];
+        $var="";
+        if($estado=="Pendiente"){
+           // $datos[6]="A";
+           $var="P";
+        
+          }
+            else  {
+     
+          $var="I";
+        }  
+  
+        $model = new \App\Models\Entregas;
+        $model->ENTdescripcion  = $_POST['ENTdescripcion'];
+        $model->ENTtipo  = $_POST['ENTtipo'];
+        $model->VECid = $_POST['VECid'];    
+        $model->ENTfechahora  = $_POST['ENTfechahora'];
+        $model->CLIdni  = $_POST['CLIdni'];
+        $model->ENTprecio = $_POST['ENTprecio']; 
+        $model->ENTestado = $var; 
+
+        $result = $this->entregas->guardar($model);
+
+        if(!$result) {
+            throw new Exception('No se pudo realizar la operación');
+        } else {
+            header('location: ?c=entregas');
+        }
+    }
 
 }
 
