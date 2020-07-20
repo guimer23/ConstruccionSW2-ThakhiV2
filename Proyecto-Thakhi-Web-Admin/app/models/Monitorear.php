@@ -32,6 +32,27 @@ class Monitorear{
 
         return $result;
     }
+
+    
+    public function monitorear() : array{
+        $result = [];     
+        try {
+            $stm = $this->pdo->prepare('SELECT vhi.CONdni,vhi.VEClatitud,vhi.VEClongitud,co.CONnombre,vhi.VEHid FROM admvectvehiculo_conductor as vhi
+            inner join admcontconductor as co          
+            on vhi.CONdni=co.CONdni
+            inner join admenttentrega as ent
+            on ent.VECid=vhi.VECid          
+            where ent.ENTfechahora=curdate()');
+            $stm->execute();
+
+            $result = $stm->fetchAll();
+        } catch(Exception $e) {
+            echo 'ERROR!';
+            print_r( $e );
+        }
+
+        return $result;
+    }
 }
 
 
