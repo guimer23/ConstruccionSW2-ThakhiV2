@@ -92,4 +92,32 @@ public function guardar(VehiculoConductor $model) : bool{
 
         return $result;
     }
+        public function obtener(int $id) : VehiculoConductor{
+        $result = new VehiculoConductor;
+
+        try {
+            $stm = $this->pdo->prepare('select * from admvectvehiculo_conductor where VECid = ?');
+            $stm->execute([$id]);
+
+            $fetch = $stm->fetch();
+
+            $result->VECid = $fetch->VECid;
+            $result->CONdni = $fetch->CONdni;
+            $result->VEHid = $fetch->VEHid;
+            $result->VECestado = $fetch->VECestado;
+            
+
+
+        //    $result->id = $fetch->id;
+          //  $result->nombre = $fetch->nombre;
+           // $result->apellido = $fetch->apellido;
+          //  $result->fecha_nacimiento = $fetch->fecha_nacimiento;
+           // $result->profesion_id = $fetch->profesion_id;
+        } catch(Exception $e) {
+
+        }
+
+        return $result;
+    }
+
 }
