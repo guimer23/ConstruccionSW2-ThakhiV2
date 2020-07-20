@@ -33,7 +33,7 @@ class Monitorear{
         return $result;
     }
 
-    
+
     public function monitorear() : array{
         $result = [];     
         try {
@@ -49,6 +49,30 @@ class Monitorear{
         } catch(Exception $e) {
             echo 'ERROR!';
             print_r( $e );
+        }
+
+        return $result;
+    }
+
+        public function obtener(int $id) : Monitorear{
+        $result = new Monitorear;
+
+        try {
+            $stm = $this->pdo->prepare('select * from admcontconductor where CONdni = ?');
+            $stm->execute([$id]);
+
+            $fetch = $stm->fetch();
+
+            $result->CONdni = $fetch->CONdni;
+            $result->CONnombre = $fetch->CONnombre;
+            $result->CONapellido = $fetch->CONapellido;
+            $result->CONlicencia = $fetch->CONlicencia;
+            $result->CONvigencialicencia = $fetch->CONvigencialicencia;
+            $result->CONcelular = $fetch->CONcelular;
+            $result->CONemail = $fetch->CONemail;
+           
+        } catch(Exception $e) {
+
         }
 
         return $result;
