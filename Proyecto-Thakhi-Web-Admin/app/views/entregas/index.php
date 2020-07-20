@@ -143,7 +143,158 @@
             <!-- INICIA SECCION CONTENIDO -->
             <!-- ========================================================================================== -->
 
-     
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="?c=entregas&a=agregar" id="ir5"
+                                class="btn btn-primary px-4 float-right mt-0 mb-3"><i
+                                    class="mdi mdi-plus-circle-outline mr-2"></i>Agregar Nueva Entrega</a>
+                            <h4 class="header-title mt-0">Detalles de Entregas</h4>
+                            <div class="table-responsive dash-social">
+                                <table id="TablaUsuario" class="table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Descripción</th>
+                                            <th>Tipo</th>
+                                            <th>Conductor</th>
+                                            <th>Fecha</th>
+                                            <th>Cliente</th>
+                                            <th>Precio</th>
+                                            <th>Estado</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                        <!--end tr-->
+                                    </thead>
+
+                                    <tbody>
+                                        <?php $i=1; ?>
+                                        <?php if(count($model) > 0): ?>
+                                        <?php foreach($model as $m): ?>
+
+                                        <tr>
+                                            <td>
+                                                <?php echo $i; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->ENTdescripcion; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->ENTtipo; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->CONnombre; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->ENTfechahora; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->CLInombre; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->ENTprecio; ?>
+                                            </td>
+                                            <td>
+                                                <?php if($m->ENTestado=="P"){
+                                                echo "<span class='badge badge-primary'>Pendiente</span>";
+                                            } 
+                                            else if($m->ENTestado=="E"){
+                                                echo "<span class='badge badge-success'>Entregado</span>";
+                                            }
+                                            else if($m->ENTestado=="N"){
+                                                echo "<span class='badge badge-danger'>No entregado</span>";
+                                            }
+                                            ?>
+
+                                            </td>
+                                            <td>
+                                                <a href="#">
+                                                    <i class="fas fa-edit text-info font-16"></i>
+                                                </a>
+                                                <a href="#" onclick="addRowHandlers('<?php  echo $m->ENTfoto ?>')"> <i
+                                                        class="fas fa-eye text-dark font-16" data-toggle="modal"
+                                                        data-animation="bounce" data-target=".bs-example-modal-lg"></i>
+                                                    </a>
+
+
+                                            </td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                        <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--end card-body-->
+                    </div>
+                    <!--end card-->
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+
+
+            <!-- modal -->
+
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mt-0" id="myLargeModalLabel">Detalle de Cliente</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img alt="" id="idfotosv2" class="img-fluid">
+                                </div>
+                                <div class="col-lg-9 align-self-center">
+                                    <div class="single-pro-detail">
+                                        <p class="mb-1">Cliente</p>
+                                        <div class="custom-border mb-3"></div>
+                                        <table class="table">
+                                            <thead class="thead-light">
+                                            </thead>
+                                            <tbody>
+
+                                                <tr>
+                                                    <th>DESCRIPCION</th>
+
+                                                    <td id="descripcionv"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>TIPO</th>
+                                                    <td id="tipov"> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>CONDUCTOR</th>
+                                                    <td id="conductorv"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>CLIENTE</th>
+                                                    <td id="clientev"> </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>ESTADO</th>
+                                                    <td> <span class='badge badge-danger' id="estadov">No
+                                                            entregado</span> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
 
 
             <!-- ========================================================================================== -->
