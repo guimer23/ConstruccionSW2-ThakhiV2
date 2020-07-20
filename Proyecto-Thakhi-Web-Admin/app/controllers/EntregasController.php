@@ -21,6 +21,15 @@ class   EntregasController{
         require_once _VIEW_PATH_ .'entregas/index.php';
         require_once _VIEW_PATH_ . 'footer.php';
     }
+    public function agregar() {       
+        //$conductores=$this->conductor->listar();
+          $clientes = $this->cliente->listar();  
+          $vehiculoconductor=$this->vehiculo_conductor->listar(); 
+  
+         require_once _VIEW_PATH_ . 'header.php';
+          require_once _VIEW_PATH_ .'entregas/agregar.php';
+          require_once _VIEW_PATH_ . 'footer.php';
+      }
 
 }
 
