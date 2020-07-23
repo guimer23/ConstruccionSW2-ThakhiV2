@@ -1,9 +1,9 @@
 <?php
 
   // Archivo de Conexión a la Base de Datos
-  //include('conexion.php');
+  include('conexion.php');
 
-  require_once("../Proyecto-Thakhi-Web-Admin/public/mapas/conexion.php");
+  //require_once("../Proyecto-Thakhi-Web-Admin/public/mapas/conexion.php");
   $c = new Conectar();
   $conexion = $c->conexion();
  //Listamos las direcciones con todos sus datos (lat, lng, dirección, etc.)

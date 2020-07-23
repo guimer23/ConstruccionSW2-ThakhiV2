@@ -1,9 +1,9 @@
 <?php
 
   // Archivo de Conexión a la Base de Datos
-  //include('conexion.php');
+  include('conexion.php');
 
-  require_once("../../Controllers/admClsConexion.php");
+  //require_once("../../Controllers/admClsConexion.php");
   $c = new Conectar();
   $conexion = $c->conexion();
 

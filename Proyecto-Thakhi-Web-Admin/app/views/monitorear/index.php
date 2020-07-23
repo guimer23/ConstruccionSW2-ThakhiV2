@@ -236,6 +236,7 @@
           map = new google.maps.Map(document.getElementById('mapa'), {
               mapOptions
           });
+       
          
   
           var posiciones =' <?php echo $movi->VEClatitud .','.$movi->VEClongitud; ?>';
