@@ -150,7 +150,7 @@
                                 <i class="dripicons-user-group report-main-icon"></i>
                             </div>
                             <span class="badge badge-danger">Clientes</span>
-                            <h3 class="my-3">1321</h3>
+                            <h3 class="my-3"> <?php echo $this->contadorcliente($model); ?></h3>
                             <p class="mb-0 text-muted text-truncate"><span class="text-success"><i
                                         class="mdi mdi-trending-up"></i>8.5%</span>New Sessions Today</p>
                         </div>
@@ -166,7 +166,7 @@
                                 <i class="dripicons-inbox report-main-icon"></i>
                             </div>
                             <span class="badge badge-secondary">Entregas</span>
-                            <h3 class="my-3">756</h3>
+                            <h3 class="my-3"><?php echo $this->contadorentregas($modele); ?></h3>
                             <p class="mb-0 text-muted text-truncate"><span class="text-danger"><i
                                         class="mdi mdi-trending-down"></i>1.5%</span> Weekly Avg.Sessions</p>
                         </div>
@@ -182,7 +182,7 @@
                                 <i class="dripicons-user report-main-icon"></i>
                             </div>
                             <span class="badge badge-warning">Conductores</span>
-                            <h3 class="my-3">53</h3>
+                            <h3 class="my-3"><?php echo $this->contadorconductores($modelc); ?></h3>
                             <p class="mb-0 text-muted text-truncate"><span class="text-danger"><i
                                         class="mdi mdi-trending-down"></i>35%</span> Bounce Rate Weekly</p>
                         </div>
@@ -198,7 +198,7 @@
                                 <i class="dripicons-rocket report-main-icon"></i>
                             </div>
                             <span class="badge badge-success">Vehículos</span>
-                            <h3 class="my-3">42</h3>
+                            <h3 class="my-3"><?php echo $this->contadorvehiculos($modelv); ?></h3>
                             <p class="mb-0 text-muted text-truncate"><span class="text-success"><i
                                         class="mdi mdi-trending-up"></i>10.5%</span> Completions Weekly</p>
                         </div>
@@ -480,7 +480,38 @@
             <!-- ========================================================================================== -->
             <!-- TERMINA SECCION CONTENIDO -->
             <!-- ========================================================================================== -->
+           <!-- <?php $contadorcliente=0;
+            $contadorcliente1=0; ?>        
+   
 
+            <?php if(count($model) > 0): ?>
+                <?php foreach($model as $m): ?>
+                    <label>
+                        <?php $contadorcliente++;?>
+                    </label> 
+                    <br>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <label><?php echo $contadorcliente;?></label>
+            <?php 
+                $contadorc=0;
+                foreach ($model as $k) {
+                        $contadorc=$contadorc+1;
+                        
+                    };
+                    echo $contadorc;
+            
+                 function two($mo) {
+                    $contadorc=0;
+                        foreach($mo as $val) { // Reference To Value
+                             $contadorc=$contadorc+1;
+                        }
+                        return($contadorc);
+                    }
+          
+                echo $this->contador1($model);
+            ?>-->
+            
         </div><!-- container -->
         <footer class="footer text-center text-sm-left">
             &copy; 2020 Thakhi Delivery <span class="text-muted d-none d-sm-inline-block float-right">Construcción de
