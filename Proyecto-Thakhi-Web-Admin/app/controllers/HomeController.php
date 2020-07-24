@@ -4,14 +4,14 @@ namespace App\Controllers;
 class HomeController { 
    private $home;
      public function __construct(){
-        $this->home = new \App\Models\Home;   
+       $this->cliente = new \App\Models\Cliente;
        $this->entregas = new \App\Models\Entregas;
        $this->conductor = new \App\Models\Conductor;
        $this->vehiculo = new \App\Models\Vehiculo;
     }  
 
     public function index() {   
-    $model = $this->home->listar(); 
+    $model = $this->cliente->listar();
     $modele = $this->entregas->listar();
     $modelc = $this->conductor->listar();
     $modelv = $this->vehiculo->listar();
